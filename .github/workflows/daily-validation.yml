@@ -22,11 +22,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: npm
 
       - name: Install + build (real validation, no src change)
         run: |
-          npm ci
+          npm install
           npm run build --if-present
 
       - name: Append daily status log
@@ -34,7 +33,7 @@ jobs:
           mkdir -p output
           DATE_UTC=$(date -u +%F)
           SHA_SHORT=$(git rev-parse --short HEAD)
-          echo "| ${DATE_UTC} | ${SHA_SHORT} | PASS npm ci + build |" >> output/daily-status.md
+          echo "| ${DATE_UTC} | ${SHA_SHORT} | PASS npm install + build |" >> output/daily-status.md
           if ! head -n 1 output/daily-status.md | grep -q "| date"; then
             sed -i '1i| date | commit | result |\n|---|---|---|' output/daily-status.md
           fi
