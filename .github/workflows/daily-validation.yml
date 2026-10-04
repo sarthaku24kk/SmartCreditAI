@@ -41,8 +41,8 @@ jobs:
 
       - name: Commit status log if changed
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "sarthaku24kk"
+          git config user.email "sarthaku24kk@users.noreply.github.com"
           git add output/daily-status.md
           if git diff --cached --quiet; then
             echo "No changes to commit."
